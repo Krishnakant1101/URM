@@ -1,38 +1,55 @@
 import React from 'react';
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+import { Card, CardContent, CardMedia, Typography, Button, Box } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
-interface VideoCardProps {
-  videoSrc: string;
+const StyledCard = styled(Card)(({ theme }) => ({
+  maxWidth: 345,
+  margin: theme.spacing(2),
+  boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+}));
+
+// Define the props interface for the card (optional, based on needs)
+interface CardProps {
   title: string;
   description: string;
+  imageUrl: string;
+  buttonText: string;
+  onButtonClick: () => void;
 }
 
-
-const VideoCard: React.FC<VideoCardProps> = ({ videoSrc, title, description })=> {
+const CustomCard: React.FC<CardProps> = ({ title, description, imageUrl, buttonText, onButtonClick }) => {
   return (
-    <Card sx={{ maxWidth: 345, margin: 'auto' }}>
-      {/* Video Section */}
+    <StyledCard>
+      {/* Card Image */}
       <CardMedia
-        component="video"
-        height="200"
-        controls
-        src={videoSrc} // Replace with your video URL
+        component="img"
+        height="140"
+        image={imageUrl}
+        alt={title}
       />
-
-      {/* Description Section */}
+      
+      {/* Card Content */}
       <CardContent>
-        <Typography variant="h6" component="div">
+        <Typography variant="h5" component="div">
           {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         {description}
+          {description}
         </Typography>
       </CardContent>
-    </Card>
+      
+      {/* Card Action */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', padding: 2 }}>
+        <Button 
+          variant="contained" 
+          color="primary" 
+          onClick={onButtonClick}
+        >
+          {buttonText}
+        </Button>
+      </Box>
+    </StyledCard>
   );
 };
 
-export default VideoCard;
+export default CustomCard;

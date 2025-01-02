@@ -20,12 +20,12 @@ const GlassAppBar = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.appBar,
 }));
 
-const GlassHeader: React.FC = () => {
+const Header: React.FC = () => {
   return (
     <GlassAppBar>
       <Toolbar>
         {/* Left Section: Home Icon */}
-        <Box display="flex" alignItems="center" flexGrow={1}>
+        <Box display="flex" alignItems="center"  flexGrow={1}>
           <HomeIcon sx={{ color: 'black', fontSize: '35px', cursor: 'pointer' }} />
           <Typography 
             variant="h6" 
@@ -54,7 +54,8 @@ const GlassHeader: React.FC = () => {
         </Box>
       </Toolbar>
     </GlassAppBar>
+    
   );
 };
 
-export default GlassHeader;
+export default Header;
