@@ -23,10 +23,16 @@ const TasksForm: React.FC<TasksFormProps> = ({ closeModal }) => {
             description,
             stage: "todo",
         };
-
-       
-    };
-
+        const response = await fetch("http://localhost:1100/api/addTasksData", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(todoData),
+          });
+           console.log(response)
+          
+        }
     return (
         <Box
             component="form"

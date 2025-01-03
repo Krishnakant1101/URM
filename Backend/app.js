@@ -1,7 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
-const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const cors = require('cors');
 
@@ -14,7 +13,7 @@ app.use(bodyParser.json());
 app.use(fileUpload({ useTempFiles: true, tempFileDir: '/tmp/' }));
 
 // Routes
-app.use('/auth', authRoutes);
+
 app.use('/api', taskRoutes);
 
 app.get("/", (req, res) => res.send("API is working!"));

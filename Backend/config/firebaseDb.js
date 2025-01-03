@@ -12,13 +12,13 @@ const {
 } = require("firebase/firestore");
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCy3Tp6ZegD70kmEUVCqwusCBE_6Kfl59k",
-  authDomain: "todoapp-8abd6.firebaseapp.com",
-  projectId: "todoapp-8abd6",
-  storageBucket: "todoapp-8abd6.appspot.com",
-  messagingSenderId: "692523824871",
-  appId: "1:692523824871:web:5cea1745d322c5f8681442",
-  measurementId: "G-YTWWE9N18S",
+  apiKey: "AIzaSyBbGlPd4_MbKfzXmPwyGfQL5t-CfbbEjO4",
+  authDomain: "user-relation-management.firebaseapp.com",
+  projectId: "user-relation-management",
+  storageBucket: "user-relation-management.firebasestorage.app",
+  messagingSenderId: "740017307198",
+  appId: "1:740017307198:web:e2b8ffe48a9844066d9b6f",
+  measurementId: "G-2EWMGP4RH3"
 };
 
 // Initialize Firebase

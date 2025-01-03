@@ -1,38 +1,61 @@
-import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../store/store'
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import axios from "axios";
 
-// Define a type for the slice state
-interface CounterState {
-  value: number
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  stage: string;
 }
 
-// Define the initial state using that type
-const initialState: CounterState = {
-  value: 0,
+interface TasksState {
+  tasks: Task[];
+  loading: boolean;
+  error: string | null;
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
-  // `createSlice` will infer the state type from the `initialState` argument
+const initialState: TasksState = {
+  tasks: [],
+  loading: false,
+  error: null,
+};
+
+// Async Thunk for Fetching Tasks
+export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get("http://localhost:1100/api/addTasksData");
+    console.log(response.data)
+    return {}
+  } catch (error: any) {
+    return rejectWithValue(error.response?.data || "Failed to fetch tasks");
+  }
+});
+
+// Slice
+const tasksSlice = createSlice({
+  name: "tasks",
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
-    },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
+    addTask: (state, action: PayloadAction<Task>) => {
+      state.tasks.push(action.payload);
     },
   },
-})
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTasks.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchTasks.fulfilled, (state, action: PayloadAction<Task[]>) => {
+        state.tasks = action.payload;
+        state.loading = false;
+      })
+      .addCase(fetchTasks.rejected, (state, action: PayloadAction<any>) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
+  },
+});
 
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
-
-// Other code such as selectors can use the imported `RootState` type
-export const selectCount = (state: RootState) => state.counter.value
-
-export default counterSlice.reducer
+export const { addTask } = tasksSlice.actions;
+export default tasksSlice.reducer;

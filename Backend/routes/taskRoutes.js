@@ -1,13 +1,13 @@
 const express = require('express');
 const { getTasks, createTask, updateTask, deleteTask,updateTaskStage } = require('../controllers/taskController');
-const authenticateToken = require('../middlewares/authenticateToken');
+
 
 const router = express.Router();
 
-router.get('/getAllTodoData',  getTasks);
-router.post('/addTodoData',  createTask);
-router.put('/updateTodoData',  updateTask);
-router.put('/updateTodoStage',  updateTaskStage);
-router.delete('/deleteTodoData',  deleteTask);
+router.get('/getAllTasksData',  getTasks);
+router.post('/addTasksData',  createTask);
+router.put('/updateTasksData',  updateTask);
+router.put('/updateTasksStage',  updateTaskStage);
+router.delete('/deleteTasksData',  deleteTask);
 
 module.exports = router;

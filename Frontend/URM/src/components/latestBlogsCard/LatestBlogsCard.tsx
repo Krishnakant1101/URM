@@ -31,7 +31,7 @@ const OverflowCard: React.FC = () => {
             textColor="text.secondary"
             sx={{ fontWeight: 'md' }}
           >
-            6.3k views
+           
           </Typography>
           <Divider orientation="vertical" />
           <Typography
