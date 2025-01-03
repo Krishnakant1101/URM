@@ -6,6 +6,7 @@ import LatestBlogsCard from './components/latestBlogsCard/LatestBlogsCard';
 import UserTable from './components/userTable/UserTable';
 import Footer from './components/footer/Footer';
 import UserDataForm from './components/userDataForm/UserDataForm';
+import TasksForm from './components/tasksForm/TasksForm'
 
 const groupsIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/681/681494.png' height="55px" />
@@ -20,7 +21,7 @@ const historyIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/5582/5582302.png' height="55px" />
 );
 const createButtonIcon = () => (
-   <img src='https://cdn-icons-png.flaticon.com/128/10023/10023858.png' height="35px" />
+  <img src='https://cdn-icons-png.flaticon.com/128/10023/10023858.png' height="35px" />
 );
 
 const App: React.FC = () => {
@@ -52,6 +53,7 @@ const App: React.FC = () => {
                 description="click the view button"
                 IconComponent={tasksIcon}
                 createButtonIcon={createButtonIcon}
+                TasksForm={TasksForm}
                 onButtonClick={() => alert("Button clicked!")}
               />
             </Grid>
@@ -59,7 +61,7 @@ const App: React.FC = () => {
               <FeaturesCard
                 title="Activity"
                 description="click the view button"
-                IconComponent={activityIcon} // Passing the icon directly
+                IconComponent={activityIcon}
                 onButtonClick={() => alert("Button clicked!")}
               />
             </Grid>
@@ -75,7 +77,7 @@ const App: React.FC = () => {
         </Box>
       </Container>
 
-      <Box sx={{ flexGrow: 1, display: "flex", justifyContent:"center" ,marginTop:"40px"}}>
+      <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center", marginTop: "40px" }}>
         <Box m={2}>
           <LatestBlogsCard /></Box>
         <Box m={2}>
@@ -86,10 +88,10 @@ const App: React.FC = () => {
         </Box>
       </Box>
 
-      <UserTable/><br /><br />
-<Footer/>
+      <UserTable /><br /><br />
+      <Footer />
 
-     
+
     </>
   );
 };

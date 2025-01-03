@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 
 interface UserDataFormProps {
-  closeModal: (value: boolean) => void; // Prop to close the modal
+  closeModal: () => void; 
 }
 
 const UserDataForm: React.FC<UserDataFormProps> = ({ closeModal }) => {
@@ -28,7 +28,7 @@ const UserDataForm: React.FC<UserDataFormProps> = ({ closeModal }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
-    closeModal(false); // Close the modal after submission
+    closeModal();
   };
 
   return (
@@ -105,14 +105,15 @@ const UserDataForm: React.FC<UserDataFormProps> = ({ closeModal }) => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             mt: 3,
+            gap:4
           }}
         >
           <Button
             variant="contained"
-            color="secondary"
-            onClick={() => closeModal(false)} // Close the modal
+            color="primary"
+            onClick={() => closeModal()}
           >
             Cancel
           </Button>

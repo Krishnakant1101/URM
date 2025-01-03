@@ -12,16 +12,18 @@ interface BasicCardProps {
   description?: string;
   IconComponent?: React.FC;
   createButtonIcon?: React.FC;
-  UserDataForm?: React.FC<{ closeModal: (value: boolean) => void }>; // Add type for UserDataForm
+  UserDataForm?: React.FC<{ closeModal: () => void }>;
+  TasksForm?: React.FC<{ closeModal: () => void }>;
   onButtonClick?: () => void;
 }
 
-const BasicCard: React.FC<BasicCardProps> = ({
+const FeaturesCard: React.FC<BasicCardProps> = ({
   title,
   description,
   IconComponent,
   createButtonIcon,
   UserDataForm,
+  TasksForm,
   onButtonClick,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -45,8 +47,9 @@ const BasicCard: React.FC<BasicCardProps> = ({
           <Box
             sx={{
               position: "absolute",
-              top: -35,
-              left: 8,
+              top: -30, // Adjusted to place the icon above the card
+              left: "20%", // Center horizontally
+              transform: "translateX(-50%)", // Centering
               zIndex: 1,
               width: "auto",
               height: "auto",
@@ -67,37 +70,40 @@ const BasicCard: React.FC<BasicCardProps> = ({
           <Button size="small" onClick={onButtonClick}>
             View
           </Button>
-        </CardActions>
-        {createButtonIcon && (
-          <Box
+          {createButtonIcon && (
+            <Box
             sx={{
               position: "absolute",
-              top: 100,
-              left: 195,
-              zIndex: 1,
-              width: "auto",
-              height: "auto",
+              right: 15,
+              bottom: 5,
               cursor: "pointer",
-            }}
-            onClick={handleOpen}
-          >
-            {React.createElement(createButtonIcon)}
-          </Box>
-        )}
+              transition: "transform 0.2s ease-in-out, color 0.2s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.2)",
+                color: "primary.main", 
+              }}}
+              onClick={handleOpen}
+            >
+              {React.createElement(createButtonIcon)}
+            </Box>
+          )}
+        </CardActions>
       </Card>
 
       {/* Modal Component */}
       <Modal open={open} onClose={handleClose}>
-        
+        <Box>
           {UserDataForm ? (
-            <UserDataForm closeModal={setOpen} />
+            <UserDataForm closeModal={handleClose} />
+          ) : TasksForm ? (
+            <TasksForm closeModal={handleClose} />
           ) : (
             <Typography variant="h6">Form Component is Missing</Typography>
           )}
-       
+        </Box>
       </Modal>
     </>
   );
 };
 
-export default BasicCard;
+export default FeaturesCard;
