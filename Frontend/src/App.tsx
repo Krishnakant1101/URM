@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { CssBaseline, Container, Box, Grid } from '@mui/material';
 import FeaturesCard from './components/featuresCard/FeaturesCard';
 import Header from './components/Header/Header';
@@ -7,6 +7,8 @@ import UserTable from './components/userTable/UserTable';
 import Footer from './components/footer/Footer';
 import UserDataForm from './components/userDataForm/UserDataForm';
 import TasksForm from './components/tasksForm/TasksForm'
+import TasksSideBar from './components/tasksSideBar/TasksSideBar';
+
 
 const groupsIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/681/681494.png' height="55px" />
@@ -24,9 +26,19 @@ const createButtonIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/10023/10023858.png' height="35px" />
 );
 
+
 const App: React.FC = () => {
+  const aboutRef = useRef<HTMLDivElement>(null);
+
+  const scrollFunction = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
+
       <CssBaseline /> {/* Ensures consistent baseline CSS */}
       {/* Header */}
       <Header />
@@ -44,6 +56,7 @@ const App: React.FC = () => {
                 description="click the view button"
                 IconComponent={groupsIcon}
                 createButtonIcon={createButtonIcon}
+                scrollFunction={scrollFunction}
                 UserDataForm={UserDataForm}
                 onButtonClick={() => alert("Button clicked!")}
               /></Grid>
@@ -53,6 +66,7 @@ const App: React.FC = () => {
                 description="click the view button"
                 IconComponent={tasksIcon}
                 createButtonIcon={createButtonIcon}
+                scrollFunction={scrollFunction}
                 TasksForm={TasksForm}
                 onButtonClick={() => alert("Button clicked!")}
               />
@@ -61,6 +75,7 @@ const App: React.FC = () => {
               <FeaturesCard
                 title="Activity"
                 description="click the view button"
+                scrollFunction={scrollFunction}
                 IconComponent={activityIcon}
                 onButtonClick={() => alert("Button clicked!")}
               />
@@ -69,7 +84,8 @@ const App: React.FC = () => {
               <FeaturesCard
                 title="History"
                 description="click the view button"
-                IconComponent={historyIcon} // Passing the icon directly
+                scrollFunction={scrollFunction}
+                IconComponent={historyIcon} 
                 onButtonClick={() => alert("Button clicked!")}
               />
             </Grid>
@@ -88,8 +104,15 @@ const App: React.FC = () => {
         </Box>
       </Box>
 
-      <UserTable /><br /><br />
+<Box ref={aboutRef} sx={{display:"flex",justifyContent:"center"}}>
+<UserTable />
+<TasksSideBar/>
+</Box>
+      
+     
       <Footer />
+
+     
 
 
     </>

@@ -9,6 +9,7 @@ import Modal from "@mui/material/Modal";
 
 interface BasicCardProps {
   title?: string;
+  scrollFunction?: () => void;
   description?: string;
   IconComponent?: React.FC;
   createButtonIcon?: React.FC;
@@ -24,6 +25,7 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
   createButtonIcon,
   UserDataForm,
   TasksForm,
+  scrollFunction,
   onButtonClick,
 }) => {
   const [open, setOpen] = React.useState(false);
@@ -41,6 +43,7 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
           mt: 14,
           position: "relative",
           overflow: "visible",
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1), 0px -4px 6px rgba(0, 0, 0, 0.1), 4px 0px 6px rgba(0, 0, 0, 0.1), -4px 0px 6px rgba(0, 0, 0, 0.1)", // Custom shadow
         }}
       >
         {IconComponent && (
@@ -67,7 +70,7 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={onButtonClick}>
+          <Button size="small" onClick={scrollFunction}>
             View
           </Button>
           {createButtonIcon && (

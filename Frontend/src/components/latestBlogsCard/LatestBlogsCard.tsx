@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 
 const OverflowCard: React.FC = () => {
   return (
-    <Card variant="outlined" sx={{ width: 350 ,height:"400px"}}>
+    <Card variant="outlined" sx={{ boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1), 0px -4px 6px rgba(0, 0, 0, 0.1), 4px 0px 6px rgba(0, 0, 0, 0.1), -4px 0px 6px rgba(0, 0, 0, 0.1)",width: 350 ,height:"400px"}}>
       <CardOverflow>
         <AspectRatio ratio="2">
           <img

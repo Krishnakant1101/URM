@@ -64,8 +64,16 @@ router.get("/getTasksData",async(req,res)=>{
     try {
         const snapshot=await db.collection("tasksData").get();
         const users = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+        console.log("Fetched Users Data:", users);
+        res.status(200).send(users);
     } catch (error) {
-        
+      if (error instanceof Error) {
+        console.error("Error fetching TasksData:", error.message);
+        res.status(500).send({ error: error.message });
+      } else {
+        console.error("Unknown error:", error);
+        res.status(500).send({ error: "An unknown error occurred" });
+      }
     }
 })
 
