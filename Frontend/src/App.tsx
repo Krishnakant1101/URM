@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
-import { CssBaseline, Container, Box, Grid } from '@mui/material';
+
+import { CssBaseline, Container, Box, Grid, Grid2 } from '@mui/material';
+
 import FeaturesCard from './components/featuresCard/FeaturesCard';
 import Header from './components/Header/Header';
 import LatestBlogsCard from './components/latestBlogsCard/LatestBlogsCard';
@@ -8,7 +10,6 @@ import Footer from './components/footer/Footer';
 import UserDataForm from './components/userDataForm/UserDataForm';
 import TasksForm from './components/tasksForm/TasksForm'
 import TasksSideBar from './components/tasksSideBar/TasksSideBar';
-
 
 const groupsIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/681/681494.png' height="55px" />
@@ -85,7 +86,7 @@ const App: React.FC = () => {
                 title="History"
                 description="click the view button"
                 scrollFunction={scrollFunction}
-                IconComponent={historyIcon} 
+                IconComponent={historyIcon}
                 onButtonClick={() => alert("Button clicked!")}
               />
             </Grid>
@@ -104,15 +105,34 @@ const App: React.FC = () => {
         </Box>
       </Box>
 
-<Box ref={aboutRef} sx={{display:"flex",justifyContent:"center"}}>
-<UserTable />
-<TasksSideBar/>
-</Box>
+
+      <Grid container spacing={2}>
+        <Grid md={8}>
+        <UserTable  />
+        </Grid>
+      <Grid md={4}>
+      <TasksSideBar  />
+      </Grid>
       
-     
+        </Grid>
+
+<Box
+  ref={aboutRef}
+  sx={{
+    display: "flex",
+    flexDirection: { xs: "column", sm: "row" },
+    justifyContent: "center",
+    gap: 2,
+  }}
+>
+ 
+</Box>
+
+
+
       <Footer />
 
-     
+
 
 
     </>
