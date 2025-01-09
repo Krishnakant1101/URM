@@ -17,8 +17,8 @@ const groupsIcon = () => (
 const tasksIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/10888/10888338.png' height="55px" />
 );
-const activityIcon = () => (
-  <img src='https://cdn-icons-png.flaticon.com/128/16116/16116730.png' height="55px" />
+const gmailIcon = () => (
+  <img src='https://cdn-icons-png.flaticon.com/128/6244/6244710.png' height="55px" />
 );
 const historyIcon = () => (
   <img src='https://cdn-icons-png.flaticon.com/128/5582/5582302.png' height="55px" />
@@ -74,10 +74,10 @@ const App: React.FC = () => {
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <FeaturesCard
-                title="Activity"
+                title="Messages"
                 description="click the view button"
                 scrollFunction={scrollFunction}
-                IconComponent={activityIcon}
+                IconComponent={gmailIcon}
                 onButtonClick={() => alert("Button clicked!")}
               />
             </Grid>

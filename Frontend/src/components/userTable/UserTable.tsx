@@ -18,16 +18,7 @@ import {
   Stack,
 } from "@mui/material";
 
-type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  mobile: string;
-  address: string;
-  salary: number;
-  department: string;
-};
+
 
 const UserDataTable: React.FC = () => {
   const dispatch = useAppDispatch();

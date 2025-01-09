@@ -110,3 +110,4 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
 };
 
 export default FeaturesCard;
+

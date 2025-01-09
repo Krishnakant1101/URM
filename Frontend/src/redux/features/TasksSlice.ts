@@ -42,7 +42,7 @@ export const fetchTasks = createAsyncThunk<Task[], void, { rejectValue: ApiError
   "tasks/fetchTasks",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get("http://localhost:3000/api/getAllTasksData");
+      const response = await axios.get("http://localhost:3000/api/getTasksData");
       return response.data; // Assuming the API returns an array of tasks
     } catch (error) {
       const message = getErrorMessage(error as AxiosError);
