@@ -75,4 +75,63 @@ router.get("/getTasksData",async(req,res)=>{
     }
 })
 
+router.put("/editTask", async (req, res) => {
+  const {id}=req.body;
+  const {title,description,flag} = req.body; 
+
+  try {
+    const taskRef = db.collection("tasksData").doc(id); 
+    const taskSnapshot = await taskRef.get();
+
+    if (!taskSnapshot.exists) {
+      
+       res.status(404).send({ error: "Task not found" });
+    }
+
+    await taskRef.update({title,description,flag});
+
+    res.status(200).send({ message: "Task updated successfully", id });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error updating TaskData:", error.message);
+      res.status(500).send({ error: error.message });
+    } else {
+      console.error("Unknown error:", error);
+      res.status(500).send({ error: "An unknown error occurred" });
+    }
+  }
+});
+
+
 export default router;
+
+
+/*
+router.put("/editTasks/:id", async (req, res) => {
+  const { id } = req.params; // Extract task ID from the URL
+  const updatedData = req.body; // Extract updated task data from the request body
+
+  try {
+    const taskRef = db.collection("tasksData").doc(id); // Reference to the specific document
+    const taskSnapshot = await taskRef.get();
+
+    if (!taskSnapshot.exists) {
+      return res.status(404).send({ error: "Task not found" });
+    }
+
+    // Update the document with the provided data
+    await taskRef.update(updatedData);
+
+    res.status(200).send({ message: "Task updated successfully", id, updatedData });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("Error updating TaskData:", error.message);
+      res.status(500).send({ error: error.message });
+    } else {
+      console.error("Unknown error:", error);
+      res.status(500).send({ error: "An unknown error occurred" });
+    }
+  }
+});
+
+*/

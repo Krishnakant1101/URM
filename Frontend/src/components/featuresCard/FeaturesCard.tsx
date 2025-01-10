@@ -63,7 +63,7 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
         )}
         <CardContent>
           <Typography variant="h5" component="div" textAlign="end">
-            {title}
+            {title} 
           </Typography>
           <Typography variant="body2" textAlign="end">
             {description}
@@ -99,7 +99,7 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
           {UserDataForm ? (
             <UserDataForm closeModal={handleClose} />
           ) : TasksForm ? (
-            <TasksForm closeModal={handleClose} />
+            <TasksForm closeModal={handleClose} titleProp="" descriptionProp="" formTitle="Add" />
           ) : (
             <Typography variant="h6">Form Component is Missing</Typography>
           )}
@@ -110,4 +110,11 @@ const FeaturesCard: React.FC<BasicCardProps> = ({
 };
 
 export default FeaturesCard;
+
+/*
+ titleProp:string,
+  descriptionProp: string;
+  stageProp: string;
+  flagProp: string;
+*/
 

@@ -51,6 +51,7 @@ export const fetchTasks = createAsyncThunk<Task[], void, { rejectValue: ApiError
   }
 );
 
+
 // Async Thunk to Add Task Data
 export const addTask = createAsyncThunk<Task, Task, { rejectValue: ApiError }>(
   "tasks/addTask",
@@ -58,6 +59,21 @@ export const addTask = createAsyncThunk<Task, Task, { rejectValue: ApiError }>(
     try {
       const response = await axios.post("http://localhost:3000/api/addTasksData", newTask);
       return { ...newTask, id: response.data.id }; // Firebase returns the document ID
+    } catch (error) {
+      const message = getErrorMessage(error as AxiosError);
+      return rejectWithValue({ message });
+    }
+  }
+);
+
+// Async Thunk to Edit Task Data
+export const editTask = createAsyncThunk<Task, Task, { rejectValue: ApiError }>(
+  "tasks/addTask",
+  async (editedTask: Task, { rejectWithValue }) => {
+    try {
+     const response= await axios.put("http://localhost:3000/api/editTask", editedTask);
+      console.log(response);
+      return { ...editedTask};
     } catch (error) {
       const message = getErrorMessage(error as AxiosError);
       return rejectWithValue({ message });
